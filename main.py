@@ -11,7 +11,8 @@ def read_recipes(file_name):
             for _ in range(int(ingridients_count)):
                 ingridients = recipe_name.readline()
                 ingridients_name, quantyty, measure = ingridients.split(' | ')
-                ingridients_list = {'ingridients_name': ingridients_name, 'quantyty': quantyty,
+                ingridients_list = {'ingridients_name': ingridients_name, 
+                                    'quantyty': quantyty,
                                     'measure': measure.strip()}
                 cook_book[dish_name].append(ingridients_list)
             recipe_name.readline()
@@ -23,7 +24,8 @@ def get_shop_list_by_person(dishes, person_count, cook_book):
     shop_ing = {}
     for dish in dishes:
         for ing in cook_book[dish]:
-            measur_qty = {'measure': ing['measure'], 'quantyty': int(ing['quantyty']) * person_count}
+            measur_qty = {'measure': ing['measure'], 
+                          'quantyty': int(ing['quantyty']) * person_count}
             if ing['ingridients_name'] not in shop_ing:
                 shop_ing[ing['ingridients_name']] = measur_qty
             else:
