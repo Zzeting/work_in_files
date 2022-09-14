@@ -36,30 +36,23 @@ def get_shop_list_by_person(dishes, person_count, cook_book):
 
 def concat_file(file1, file2, file3):
     count_line = []
-    name1 = file1
-    name2 = file2
-    name3 = file3
-    with open(file1, encoding='utf8') as file_1:
-        content_file1 = file_1.readlines()
-        count_line.append([name1, len(content_file1), content_file1])
-    with open(file2, encoding='utf8') as file_2:
-        content_file2 = file_2.readlines()
-        count_line.append([name2, len(content_file2), content_file2])
-    with open(file3, encoding='utf8') as file_3:
-        content_file3 = file_3.readlines()
-        count_line.append([name3, len(content_file3), content_file3])
+    for file in (file1, file2, file3):
+        name = file
+        with open(file, encoding='utf8') as files:
+            content_file = files.readlines()
+            count_line.append([name, len(content_file), content_file])
 
     for i in range(len(count_line) - 1):
         if count_line[i][1] > count_line[i+1][1]:
             count_line[i], count_line[i+1] = count_line[i+1], count_line[i]
 
-    with open('4.txt', 'w', encoding='utf8') as file4:
+    with open('4.txt', 'w', encoding='utf8') as files:
         for file in count_line:
             res = f'{file[0]}\n{file[1]}\n{"".join(file[2])}\n'
-            file4.writelines(res)
+            files.writelines(res)
 
-    with open('4.txt', 'r', encoding='utf8') as file4:
-        content = file4.read()
+    with open('4.txt', 'r', encoding='utf8') as files:
+        content = files.read()
         print(content)
 
 
