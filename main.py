@@ -16,7 +16,7 @@ def read_recipes(file_name):
                                     'measure': measure.strip()}
                 cook_book[dish_name].append(ingridients_list)
             recipe_name.readline()
-    return cook_book
+    return json.dumps(cook_book, indent=4, ensure_ascii=False)
 
 
 def get_shop_list_by_person(dishes, person_count, cook_book):
@@ -63,7 +63,7 @@ def concat_file(file1, file2, file3):
         print(content)
 
 
-cook_book = json.dumps(read_recipes('file.txt'), indent=4, ensure_ascii=False)
+cook_book = read_recipes('file.txt')
 print(cook_book)
 print('*' * 20)
 print(get_shop_list_by_person(["Фахитос", "Омлет"], 2, cook_book))
