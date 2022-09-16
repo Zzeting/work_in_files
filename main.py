@@ -40,15 +40,15 @@ def concat_file(file1, file2, file3):
         name = file
         with open(file, encoding='utf8') as files:
             content_file = files.readlines()
-            count_line.append([name, len(content_file), content_file])
+            count_line.append([name, content_file])
 
     for i in range(len(count_line) - 1):
-        if count_line[i][1] > count_line[i+1][1]:
+        if len(count_line[i][1]) > len(count_line[i+1][1]):
             count_line[i], count_line[i+1] = count_line[i+1], count_line[i]
 
     with open('4.txt', 'w', encoding='utf8') as files:
         for file in count_line:
-            res = f'{file[0]}\n{file[1]}\n{"".join(file[2])}\n'
+            res = f'{file[0]}\n{len(file[1])}\n{"".join(file[1])}\n'
             files.writelines(res)
 
     with open('4.txt', 'r', encoding='utf8') as files:
